@@ -5,6 +5,7 @@ const rsHome = {
     activityManager: {},
     initialize: () => {
         rsHome.activityManager = new RSActivityManager();
+        sessionStorage.removeItem('RSCurrentActivityId');
         // Load page
         rsHome.initContent().done(() => {
             // Register events
@@ -19,8 +20,12 @@ const rsHome = {
         $('#divNewActivityStep1').hide();
         $('#divNewActivityStep2').hide();
         rsHome.activityManager.load().done((activities) => {
-            //console.log(btoa(JSON.stringify(activities)));
-            //activities = JSON.parse(atob("W3siaWQiOiJhY3RfMTc4MTI2ODQxODAxMCIsImRhdGUiOiIyMDI2LTA2LTAzVDAwOjAwOjAwLjAwMFoiLCJ0eXBlIjoiZW50cmFpbmVtZW50IDogYXV0cmUiLCJuYW1lIjoiTm9tIGVudHJhaW5lbWVudCIsImxvY2F0aW9uIjoiTWVydmlsbGUiLCJkdXJhdGlvbiI6IjMwIiwiZGlzdGFuY2UiOiI2Iiwic3RhdGlzdGljcyI6eyJGQyI6eyJhdmdWYWx1ZSI6MTYwLCJtYXhWYWx1ZSI6MTY4fSwiQWxsdXJlIjp7ImF2Z1ZhbHVlIjo2LCJtYXhWYWx1ZSI6NS40NX0sIlNwZWVkIjp7ImF2Z1ZhbHVlIjoxMC4yLCJtYXhWYWx1ZSI6MTF9LCJSeXRobSI6eyJhdmdWYWx1ZSI6MTcwLCJtYXhWYWx1ZSI6MTcyLCJhdmdMZW5ndGgiOjAuOH19fSx7ImlkIjoiYWN0XzE3ODEyNzEwODY4NTAiLCJkYXRlIjoiMjAyNi0wNi0wNlQwMDowMDowMC4wMDBaIiwidHlwZSI6ImNvdXJzZSA6IDEwIGttcyIsIm5hbWUiOiJDb3Vyc2UiLCJsb2NhdGlvbiI6IlRvdWxvdXNlIiwiZHVyYXRpb24iOiI1NSIsImRpc3RhbmNlIjoiMTAiLCJzdGF0aXN0aWNzIjp7IkZDIjp7ImF2Z1ZhbHVlIjoxODAsIm1heFZhbHVlIjoxOTB9LCJBbGx1cmUiOnsiYXZnVmFsdWUiOjUsIm1heFZhbHVlIjo0LjN9LCJTcGVlZCI6eyJhdmdWYWx1ZSI6MTIuNSwibWF4VmFsdWUiOjE0fSwiUnl0aG0iOnsiYXZnVmFsdWUiOjE4MCwibWF4VmFsdWUiOjE5MCwiYXZnTGVuZ3RoIjoxLjAyfX19LHsiaWQiOiJhY3RfMTc4MTI3MTU1NTEzMiIsImRhdGUiOiIyMDI2LTA2LTExVDAwOjAwOjAwLjAwMFoiLCJ0eXBlIjoiZW50cmFpbmVtZW50IDogem9uZSAyIiwibmFtZSI6IkVudHJh7m5lbWVudCAxIiwibG9jYXRpb24iOiJNZXJ2aWxsZSIsImR1cmF0aW9uIjo0NSwiZGlzdGFuY2UiOiI4Iiwic3RhdGlzdGljcyI6eyJGQyI6eyJhdmdWYWx1ZSI6MTUwLCJtYXhWYWx1ZSI6MTU1fSwiQWxsdXJlIjp7ImF2Z1ZhbHVlIjo2LjEyLCJtYXhWYWx1ZSI6NS41fSwiU3BlZWQiOnsiYXZnVmFsdWUiOjEwLjIsIm1heFZhbHVlIjoxMX0sIlJ5dGhtIjp7ImF2Z1ZhbHVlIjoxNzAsIm1heFZhbHVlIjoxNzUsImF2Z0xlbmd0aCI6MS4wMn19fSx7ImlkIjoiYWN0XzE3ODEyNzE4MDg1NTMiLCJkYXRlIjoiMjAyNi0wNi0xMlQwMDowMDowMC4wMDBaIiwidHlwZSI6ImVudHJhaW5lbWVudCA6IHpvbmUgMiIsIm5hbWUiOiJFbnRyYWluZW1lbnQgMyIsImxvY2F0aW9uIjoiTWFyc3NhYyBzdXIgVGFybiIsImR1cmF0aW9uIjo0NiwiZGlzdGFuY2UiOiI4LjAwIiwic3RhdGlzdGljcyI6eyJGQyI6eyJhdmdWYWx1ZSI6MTYwLCJtYXhWYWx1ZSI6MTY1fSwiQWxsdXJlIjp7ImF2Z1ZhbHVlIjo1LjU1LCJtYXhWYWx1ZSI6NS4zfSwiU3BlZWQiOnsiYXZnVmFsdWUiOjExLjI1LCJtYXhWYWx1ZSI6MTN9LCJSeXRobSI6eyJhdmdWYWx1ZSI6MTc4LCJtYXhWYWx1ZSI6MTgwLCJhdmdMZW5ndGgiOjEuMDV9fX1d"));
+            if (window.debug) {
+                //console.log(btoa(JSON.stringify(activities)));
+                //let data = "W3siaWQiOiJhY3RfMTc4MTI3ODUzNTAwNCIsImRhdGUiOiIyMDI2LTA2LTA0VDAwOjAwOjAwLjAwMFoiLCJ0eXBlIjoiZW50cmFpbmVtZW50IDogYXV0cmUiLCJuYW1lIjoiTm9tIGVudHJhaW5lbWVudCIsImxvY2F0aW9uIjoiTWVydmlsbGUiLCJkdXJhdGlvbiI6MzAsImRpc3RhbmNlIjoiNi4wMCIsInN0YXRpc3RpY3MiOnsiRkMiOnsiYXZnVmFsdWUiOjE2MCwibWF4VmFsdWUiOjE2OH0sIkFsbHVyZSI6eyJhdmdWYWx1ZSI6NiwibWF4VmFsdWUiOjUuNDV9LCJTcGVlZCI6eyJhdmdWYWx1ZSI6MTAuMiwibWF4VmFsdWUiOjExfSwiUnl0aG0iOnsiYXZnVmFsdWUiOjE3MCwibWF4VmFsdWUiOjE3MiwiYXZnTGVuZ3RoIjowLjh9fX0seyJpZCI6ImFjdF8xNzgxMjc4NTYwODczIiwiZGF0ZSI6IjIwMjYtMDYtMDZUMDA6MDA6MDAuMDAwWiIsInR5cGUiOiJjb3Vyc2UgOiAxMCBrbXMiLCJuYW1lIjoiQ291cnNlIiwibG9jYXRpb24iOiJUb3Vsb3VzZSIsImR1cmF0aW9uIjo1NSwiZGlzdGFuY2UiOiIxMC4wMCIsInN0YXRpc3RpY3MiOnsiRkMiOnsiYXZnVmFsdWUiOjE4MCwibWF4VmFsdWUiOjE5MH0sIkFsbHVyZSI6eyJhdmdWYWx1ZSI6NSwibWF4VmFsdWUiOjQuM30sIlNwZWVkIjp7ImF2Z1ZhbHVlIjoxMi41LCJtYXhWYWx1ZSI6MTR9LCJSeXRobSI6eyJhdmdWYWx1ZSI6MTgwLCJtYXhWYWx1ZSI6MTkwLCJhdmdMZW5ndGgiOjEuMDJ9fX0seyJpZCI6ImFjdF8xNzgxMjc4NTYzMzMyIiwiZGF0ZSI6IjIwMjYtMDYtMTFUMDA6MDA6MDAuMDAwWiIsInR5cGUiOiJlbnRyYWluZW1lbnQgOiB6b25lIDIiLCJuYW1lIjoiRW50cmHubmVtZW50IDEiLCJsb2NhdGlvbiI6Ik1lcnZpbGxlIiwiZHVyYXRpb24iOjQ1LCJkaXN0YW5jZSI6IjguMDAiLCJzdGF0aXN0aWNzIjp7IkZDIjp7ImF2Z1ZhbHVlIjoxNTAsIm1heFZhbHVlIjoxNTV9LCJBbGx1cmUiOnsiYXZnVmFsdWUiOjYuMTIsIm1heFZhbHVlIjo1LjV9LCJTcGVlZCI6eyJhdmdWYWx1ZSI6MTAuMiwibWF4VmFsdWUiOjExfSwiUnl0aG0iOnsiYXZnVmFsdWUiOjE3MCwibWF4VmFsdWUiOjE3NSwiYXZnTGVuZ3RoIjoxLjAyfX19LHsiaWQiOiJhY3RfMTc4MTI3ODU2NTg0MyIsImRhdGUiOiIyMDI2LTA2LTEyVDAwOjAwOjAwLjAwMFoiLCJ0eXBlIjoiZW50cmFpbmVtZW50IDogem9uZSAyIiwibmFtZSI6IkVudHJhaW5lbWVudCAzIiwibG9jYXRpb24iOiJNYXJzc2FjIHN1ciBUYXJuIiwiZHVyYXRpb24iOjQ2LCJkaXN0YW5jZSI6IjguMDAiLCJzdGF0aXN0aWNzIjp7IkZDIjp7ImF2Z1ZhbHVlIjoxNjAsIm1heFZhbHVlIjoxNjV9LCJBbGx1cmUiOnsiYXZnVmFsdWUiOjUuNTUsIm1heFZhbHVlIjo1LjN9LCJTcGVlZCI6eyJhdmdWYWx1ZSI6MTEuMjUsIm1heFZhbHVlIjoxM30sIlJ5dGhtIjp7ImF2Z1ZhbHVlIjoxNzgsIm1heFZhbHVlIjoxODAsImF2Z0xlbmd0aCI6MS4wNX19fSx7ImlkIjoiYWN0XzE3ODEyNzg2MTUxMjIiLCJkYXRlIjoiMjAyNi0wNS0xNFQwMDowMDowMC4wMDBaIiwidHlwZSI6ImVudHJhaW5lbWVudCA6IGF1dHJlIiwibmFtZSI6IkVudHJhaW5lbWVudCIsImxvY2F0aW9uIjoiQWxiaSIsImR1cmF0aW9uIjoxLCJkaXN0YW5jZSI6IjEuMDAiLCJzdGF0aXN0aWNzIjp7IkZDIjp7ImF2Z1ZhbHVlIjoxLCJtYXhWYWx1ZSI6MX0sIkFsbHVyZSI6eyJhdmdWYWx1ZSI6MSwibWF4VmFsdWUiOjF9LCJTcGVlZCI6eyJhdmdWYWx1ZSI6MSwibWF4VmFsdWUiOjF9LCJSeXRobSI6eyJhdmdWYWx1ZSI6MSwibWF4VmFsdWUiOjEsImF2Z0xlbmd0aCI6MX19fV0=";
+                //rsHome.activityManager.activities = JSON.parse(atob(data));
+                //rsHome.activityManager.save();                
+            }
             rsHome.showActivities(activities);
             rsHome.showActivityTypes();
             res.resolve();
@@ -138,6 +143,7 @@ const rsHome = {
         $('#divActivities').show();
         $('#divNewActivityStep1').hide();
         $('#divNewActivityStep2').hide();
+        sessionStorage.removeItem('RSCurrentActivityId');
     },
     clicCreateActivity: () => {
         // get values
@@ -183,7 +189,10 @@ const rsHome = {
         });
     },
     clicDeleteActivity:() => {
-
+        let target = $(event.target);
+        let parent = $(target).parents('tr');
+        let id = $(parent).data('id');
+        
         let settings = {
             'title' : "Suppression activit&eacute;",
             'message' : "<br/>Confirmez-vous la suppression de l'activit&eacute; selectionn&eacute;e ?",
@@ -191,9 +200,6 @@ const rsHome = {
             'modal' : true,
             'handler' : (res) => { 
                 if (res==2) {
-                    let target = $(event.target);
-                    let parent = $(target).parents('tr');
-                    let id = $(parent).data('id');
                     rsHome.activityManager.remove(id);
                     rsHome.activityManager.save().done((activities) => {
                         rsHome.showActivities(activities);
