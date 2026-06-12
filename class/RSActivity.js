@@ -1,4 +1,4 @@
-import RSStatistics from './RSStatistics.js';
+import RSStatistics from '/class/RSStatistics.js';
 
 export default class RSActivity {
     constructor(type, name, location, date, distance, duration) {

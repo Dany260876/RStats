@@ -1,4 +1,4 @@
-import RSComponent from './RSComponent.js';
+import RSComponent from '/class/RSComponent.js';
 
 /*
 * RSComponentManager : Components manager

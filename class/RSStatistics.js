@@ -1,7 +1,7 @@
-import RSFc from './RSFc.js';
-import RSAllure from './RSAllure.js';
-import RSRythm from './RSRythm.js';
-import RSSpeed from './RSSpeed.js';
+import RSFc from '/class/RSFc.js';
+import RSAllure from '/class/RSAllure.js';
+import RSRythm from '/class/RSRythm.js';
+import RSSpeed from '/class/RSSpeed.js';
 
 export default class RSStatistics {
     constructor() {
