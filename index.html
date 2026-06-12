@@ -1,0 +1,22 @@
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="./js/jquery-4.0.0.min.js"></script>
+		<script src="./js/jspopup.js"></script>
+		<script src="./js/localforage.min.js"></script>
+		<link href="./css/rsApplication.css" rel="stylesheet">
+		<link rel="manifest" href="manifest.json">
+	</head>
+	<body>
+		<div id='divMain'>
+			<div id='divMenu' class='menu'></div>
+			<div id='divContent' class='content visible'></div>
+			<div id='divConfiguration' class='content hidden'></div>
+			<div id='divStatistics' class='content hidden'></div>
+		</div>
+	</body>
+	<script type="module">
+		import rsApplication from "./js/rsApplication.js";
+		rsApplication.start();
+	</script>
+</html>
