@@ -1,5 +1,5 @@
-import RSActivityManager from '../../../class/RSActivityManager.js'
-import RSActivity from '../../../class/RSActivity.js'
+import RSActivityManager from '../../class/RSActivityManager.js'
+import RSActivity from '../../class/RSActivity.js'
 
 const rsHome = {
     activityManager: {},
