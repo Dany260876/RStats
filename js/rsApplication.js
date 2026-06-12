@@ -1,5 +1,5 @@
-import RSConfiguration from "/class/RSConfiguration.js"
-import RSComponentManager from "/class/RSComponentManager.js"
+import RSConfiguration from "../class/RSConfiguration.js"
+import RSComponentManager from "../class/RSComponentManager.js"
 
 /*
 * Main RStats application
