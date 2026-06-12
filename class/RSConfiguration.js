@@ -7,7 +7,7 @@ export default class CTConfiguration {
         let res = $.Deferred();
         $.get("./config/config.json")
             .done((data) => {
-                if (data) {
+                if (data && !data.ActivityType) {
                     data = JSON.parse(data);
                 }
                 res.resolve(data);
