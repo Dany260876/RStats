@@ -125,6 +125,8 @@ input[type="text"], input[type="number"], select {
     border: 1px solid #ccc;
     border-radius: 6px;
     box-sizing: border-box; /* Important pour le responsive */
+    margin-top: 4px;
+    margin-bottom: 1px;
 }
 
 /* Boutons */
@@ -191,6 +193,8 @@ input[type="date" i] {
     padding: 0px;
     width: 100%;
     height: 40px;
+    margin-top: 4px;
+    margin-bottom: 1px;
 }
 
 .tblActivities .spTitle {
@@ -220,4 +224,12 @@ input[type="date" i] {
     border-style : none;
 }
 
+p {
+    margin-top: 8px;
+    margin-bottom: 1px;
+}
 
+#btnAddNewActivity {
+    text-decoration: none;
+    color: #2a286e;
+}
