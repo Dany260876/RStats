@@ -44,6 +44,7 @@ export default class RSActivitytManager {
         localforage.getItem('RSActivities').then((items) => {
             if (items!=null) {
                 me.activities = items;
+                me.sortByDate();
                 res.resolve(me.activities);
             }
             else {
@@ -63,5 +64,8 @@ export default class RSActivitytManager {
             }
         });
         return this.activities;
+    }
+    sortByDate() {
+        this.activities.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
     }
 }

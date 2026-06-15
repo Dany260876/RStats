@@ -57,8 +57,11 @@ const rsHome = {
         $('#btnAddNewActivity').click(() => rsHome.clicAddNewActivity());
         $('.spActionDelete').click(() => rsHome.clicDeleteActivity());
         $('.spActionEdit').click(() => rsHome.clicEditActivity());
+
+        // put activities in session
+        sessionStorage["RSActivities"] = JSON.stringify(activities);
         
-        $('#divActivities').show();   
+        $('#divActivities').show();
     },
     showActivityTypes: () => {
         // load activity types
@@ -97,35 +100,40 @@ const rsHome = {
             values_2.each((val) => $(val).val(1));   
         }
         else {
-            // restore values page 1
-            $(values_1[0]).val(activity.name);
-            $(values_1[1]).val(activity.location);
-            $(values_1[2]).val(new Date(activity.date).toISOString().slice(0,10));
-
-            let indexType = 0;
-            $(typeActivity).children().each((i, opt) => {
-                if ($(opt).text()==activity.type) {
-                    indexType = i;
-                    return;
-                }
-            });
-            $(typeActivity).val(indexType);
-            
-            $(values_1[3]).val((activity.distance*1).toFixed(2));
-            $(values_1[4]).val(activity.duration);
+            try {
+                // restore values page 1
+                $(values_1[0]).val(activity.name);
+                $(values_1[1]).val(activity.location);
+                $(values_1[2]).val(new Date(activity.date).toISOString().slice(0,10));
     
-            // restore values page 2
-            $(values_2[0]).val(activity.statistics.FC.avgValue);
-            $(values_2[1]).val(activity.statistics.FC.maxValue);
-            $(values_2[2]).val(activity.statistics.Allure.avgValue.toFixed(2));
-            $(values_2[3]).val(activity.statistics.Allure.maxValue.toFixed(2));
-            $(values_2[4]).val(activity.statistics.Speed.avgValue.toFixed(2));
-            $(values_2[5]).val(activity.statistics.Speed.maxValue.toFixed(2));
-            $(values_2[6]).val(activity.statistics.Rythm.avgValue);
-            $(values_2[7]).val(activity.statistics.Rythm.maxValue);
-            $(values_2[8]).val(activity.statistics.Rythm.avgLength.toFixed(2));
-
-            sessionStorage['RSCurrentActivityId'] = activity.id;
+                let indexType = 0;
+                $(typeActivity).children().each((i, opt) => {
+                    if ($(opt).text()==activity.type) {
+                        indexType = i;
+                        return;
+                    }
+                });
+                $(typeActivity).val(indexType);
+                
+                $(values_1[3]).val((activity.distance*1).toFixed(2));
+                $(values_1[4]).val(activity.duration);
+        
+                // restore values page 2
+                $(values_2[0]).val(activity.statistics.FC.avgValue);
+                $(values_2[1]).val(activity.statistics.FC.maxValue);
+                $(values_2[2]).val(activity.statistics.Allure.avgValue.toFixed(2));
+                $(values_2[3]).val(activity.statistics.Allure.maxValue.toFixed(2));
+                $(values_2[4]).val(activity.statistics.Speed.avgValue.toFixed(2));
+                $(values_2[5]).val(activity.statistics.Speed.maxValue.toFixed(2));
+                $(values_2[6]).val(activity.statistics.Rythm.avgValue);
+                $(values_2[7]).val(activity.statistics.Rythm.maxValue);
+                $(values_2[8]).val(activity.statistics.Rythm.avgLength.toFixed(2));
+    
+                sessionStorage['RSCurrentActivityId'] = activity.id;
+            }
+            catch(ex) {
+                console.log(ex);
+            }
         }
     },
     clicAddNewActivity: () => {
