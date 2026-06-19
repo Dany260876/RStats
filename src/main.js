@@ -1,11 +1,15 @@
 import './style.css';
 import { $ } from 'jquery';
 import { activityManager } from './class/activityManager';
-import { listActivities } from './component/listActivities';
+import { componentManager } from './class/componentManager';
+import { Chart } from 'chart.js/auto';
 
-let mgr = new activityManager();
-mgr.getActivities().done((activities) => {
-    new listActivities(activities).build().done(() => {
+$("#app").html("<div id='divMenu'></div><div id='divContent'></div><div id='divFooter'></div>");
+
+new activityManager().getActivities().done((activities) => {
+    new componentManager().build(activities).done(() => {
+        $('#divStatistics').hide();
+        $('#divActivities').show();
     });
 });
 
