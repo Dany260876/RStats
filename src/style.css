@@ -16,6 +16,9 @@
     padding: 12px 15px;
     text-align: left; /* Alignement par défaut à gauche pour le texte et les dates */
     border-bottom: 1px solid #e0e0e0;
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-left-color: lightgrey;
 }
 
 /* Style exclusif de la ligne d'en-tête */

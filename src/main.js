@@ -10,6 +10,7 @@ new activityManager().getActivities().done((activities) => {
     new componentManager().build(activities).done(() => {
         $('#divStatistics').hide();
         $('#divActivities').show();
+        $($('.menuItem')[0]).addClass('active');
     });
 });
 

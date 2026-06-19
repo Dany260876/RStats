@@ -1,25 +1,22 @@
 import { $ } from 'jquery';
-import htmlContent from './activitiesPage.html?raw';
 import { statsTools } from '../class/statsTools';
+import { component } from '../class/component';
+import htmlContent from './activitiesPage.html?raw';
 
-export class activitiesPage 
+export class activitiesPage extends component
 {
     constructor(activities) {
+        super();
         this.activities = activities;
-        this.statsTools = new statsTools();
     }
     build(containerId) {
         let res = $.Deferred();
-        try {
-            let html = $("#" + containerId).html();
-            $("#" + containerId).html(html + htmlContent);
+        this.loadContent(containerId, htmlContent).done(() => {
             $("#tblActivities").html(this.getActivities());
-            res.resolve();    
-        }
-        catch(err) {
-            console.log(err);
-            res.reject();                
-        }
+            res.resolve();
+        }).fail(() => {
+            res.reject();
+        });
         return res.promise();
     }
     getActivities() {
@@ -36,14 +33,13 @@ export class activitiesPage
         html += "<td>Avg. steps (m)</td>";
         html += "</tr>";
         this.activities.forEach((act) => {
-            console.log(act);
             html += "<tr>";
             html += "<td>" + act.activityType.typeKey + "</td>";
             html += "<td>" + act.activityName + "</td>";
             html += "<td>" + act.startTimeLocal + "</td>";
             html += "<td class='tdNumericValue'>" + (act.distance/1000).toFixed(2) + "</td>";
-            html += "<td class='tdNumericValue'>" + this.statsTools.getFormattedDuration(act.duration) + "</td>";
-            html += "<td class='tdNumericValue'>" + this.statsTools.getSpeedKph(act.averageSpeed).toFixed(2) + "</td>";
+            html += "<td class='tdNumericValue'>" + statsTools.getFormattedDuration(act.duration) + "</td>";
+            html += "<td class='tdNumericValue'>" + statsTools.getSpeedKph(act.averageSpeed).toFixed(2) + "</td>";
             html += "<td class='tdNumericValue'>" + (act.averageRunningCadenceInStepsPerMinute).toFixed(2) + "</td>";
             html += "<td class='tdNumericValue'>" + (act.averageHR) + "</td>";
             html += "<td class='tdNumericValue'>" + (act.avgStrideLength/100).toFixed(2) + "</td>";

@@ -1,28 +1,29 @@
 import { $ } from 'jquery';
+import { component } from '../class/component';
 import htmlContent from './mainMenu.html?raw';
 
-export class mainMenu 
+export class mainMenu extends component
 {
     constructor() {
+        super();
     }
     build(containerId) {
         let res = $.Deferred();
-        try {
-            $("#" + containerId).html(htmlContent);
+        this.loadContent(containerId, htmlContent).done(() => {
             $(".menuItem").click(() => this.clicMenu());
-            res.resolve();    
-        }
-        catch(err) {
-            console.log(err);
-            res.reject();                
-        }
+            res.resolve();
+        }).fail(() => {
+            res.reject();
+        });
         return res.promise();
     }
     clicMenu() {
+        $('.menuItem').removeClass('active');
         $('#divStatistics').hide();
         $('#divActivities').hide();
         let val = $(event.currentTarget).data('name');
         if (val=='statistics') $('#divStatistics').show();
         if (val=='activities') $('#divActivities').show();
+        $(event.currentTarget).addClass('active');
     }
 }
