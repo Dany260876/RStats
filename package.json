@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "vite": "^8.0.12"
+    "vite": "^6.3.5"
   },
   "dependencies": {
     "canvasjs": "^1.8.3",
