@@ -3,30 +3,46 @@
         <table>
             <tr>
                 <td>
-                    Min Distance (m)
+                    <table>
+                        <tr>
+                            <td>Fields</td>
+                            <td>
+                                <select id='selFields' multiple size=6></select>
+                            </td>
+                        </tr>
+                    </table>
                 </td>
                 <td>
-                    <input type='number' id='txtMinDistance' value=0></input>
+                    <table>
+                        <tr>
+                            <td>
+                                Min Distance (m)
+                            </td>
+                            <td>
+                                <input type='number' id='txtMinDistance' value=0></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Max Distance (m)
+                            </td>
+                            <td>
+                                <input type='number' id='txtMaxDistance' value=10000></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Nb. Activities 
+                            </td>
+                            <td>
+                                <input type='number' id='txtMaxActivities' value=5></input>
+                            </td>
+                            <td><button id='btnFilter'>OK</button></td>
+                        </tr>
+                    </table>
                 </td>
             </tr>
-            <tr>
-                <td>
-                    Max Distance (m)
-                </td>
-                <td>
-                    <input type='number' id='txtMaxDistance' value=10000></input>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Nb. Activities 
-                </td>
-                <td>
-                    <input type='number' id='txtMaxActivities' value=5></input>
-                </td>
-            <td><button id='btnFilter'>OK</button></td>
-            </tr>
-        </table>
+        </table>       
     </div>
     <canvas id='divStatsContainer'></canvas>
 </div>

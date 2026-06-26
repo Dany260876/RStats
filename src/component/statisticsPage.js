@@ -15,17 +15,38 @@ export class statisticsPage extends component
         this.statMgr.buildChart('divStatsContainer', filters, fields);
     }
     applyFiltersToChart() {
-        this.statMgr.destroyChart();
-        let fields = ['Distance', 'Speed', 'Cadence', 'Heart', 'Duration'];
+        // Get filters
         let filters =  [];
         filters.push($('#txtMinDistance').val()*1);
         filters.push($('#txtMaxDistance').val()*1);
         filters.push($('#txtMaxActivities').val()*1);        
+
+        // Get Fields
+        let fields = [];
+        let options = $('#selFields option');
+        if (options.length>0) {
+            options.each((i,opt) => {
+                if (opt.selected) fields.push(opt.text);
+            });
+        }
+        if (fields.length==0) fields = ['Distance', 'Speed', 'Cadence', 'Heart', 'Duration'];
+
+        // Rebuild chart
+        this.statMgr.destroyChart();
         this.statMgr.buildChart('divStatsContainer', filters, fields);
+    }
+    buildFields() {
+        let fields = ['Distance', 'Speed', 'Cadence', 'Heart', 'Duration'];
+        let html = "";
+        fields.forEach((field) => {
+            html += "<option>" + field + "</option>";
+        });
+        $('#selFields').html(html);
     }
     build(containerId) {
         let res = $.Deferred();
         this.loadContent(containerId, htmlContent).done(() => {
+            this.buildFields();
             this.buildChart();
             $('#btnFilter').click(() => {
                 this.applyFiltersToChart();
