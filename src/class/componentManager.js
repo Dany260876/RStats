@@ -11,7 +11,7 @@ export class componentManager {
         let res = [];
         res.push(new mainMenu().build('divMenu'));
         res.push(new activitiesPage(activities).build('divContent'));
-        res.push(new statisticsPage().build('divContent'));
+        res.push(new statisticsPage(activities).build('divContent'));
         $.when(res).done(() => {
             def.resolve();
         });
