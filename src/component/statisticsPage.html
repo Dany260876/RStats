@@ -1,48 +1,49 @@
 <div id='divStatistics'>
-    <div id='divFilter'>
-        <table>
-            <tr>
-                <td>
-                    <table>
-                        <tr>
-                            <td>Fields</td>
-                            <td>
-                                <select id='selFields' multiple size=6></select>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-                <td>
-                    <table>
-                        <tr>
-                            <td>
-                                Min Distance (m)
-                            </td>
-                            <td>
-                                <input type='number' id='txtMinDistance' value=0></input>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Max Distance (m)
-                            </td>
-                            <td>
-                                <input type='number' id='txtMaxDistance' value=10000></input>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Nb. Activities 
-                            </td>
-                            <td>
-                                <input type='number' id='txtMaxActivities' value=5></input>
-                            </td>
-                            <td><button id='btnFilter'>OK</button></td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-        </table>       
-    </div>
-    <canvas id='divStatsContainer'></canvas>
+    <details id="filterAccordion" open>
+        <summary>Filtres d'activités <span class="toggle-icon"></span></summary>
+        <div id="divFilter">
+            <div class="filter-group">
+                <label for="selFields">Fields</label>
+                <select id="selFields" multiple size="5"> 
+                    <option>Cadence</option>
+                    <option>Distance</option>
+                    <option>Duration</option>
+                    <option>Heart</option>
+                    <option>Speed</option>
+                    <option>Steps</option>
+                </select>
+            </div>
+    
+            <div class="filter-group">
+                <label for="selDistanceRange">Distances</label>
+                <select id="selDistanceRange" size="5">
+                    <option value="0-50000">All</option>
+                    <option value="4000-6000">5 km</option>
+                    <option value="9000-11000">10 km</option>
+                    <option value="20000-22000">21 kms</option>
+                    <option value="40000-44000">42 kms</option>
+                </select>
+            </div>
+            
+            <div class="filter-group numeric-group">
+                <div class="input-row">
+                    <label for="txtMinDistance">Min Distance (m)</label>
+                    <input type="number" id="txtMinDistance" value="0" step="1000">
+                </div>
+                <div class="input-row">
+                    <label for="txtMaxDistance">Max Distance (m)</label>
+                    <input type="number" id="txtMaxDistance" value="50000" step="1000">
+                </div>
+                <div class="input-row">
+                    <label for="txtMaxActivities">Nb. Activities</label>
+                    <input type="number" id="txtMaxActivities" value="5">
+                </div>
+            </div>
+        
+            <div class="action-group">
+                <button id="btnFilter">OK</button>
+            </div>
+        </div>
+    </details>
+    <canvas id='divStatsContainer' height=100%'></canvas>
 </div>

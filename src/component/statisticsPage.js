@@ -7,12 +7,12 @@ export class statisticsPage extends component
 {
     constructor(activities) {
         super();
+        this.defaultFields = ['Cadence', 'Distance', 'Duration', 'Heart', 'Speed', 'Steps'];
         this.statMgr = new statisticsManager(activities);
     }
-    buildChart() {
-        let fields = ['Distance', 'Speed', 'Cadence', 'Heart', 'Duration'];
-        let filters =  [0, 10000, 5];
-        this.statMgr.buildChart('divStatsContainer', filters, fields);
+    initChart() {
+        let filters =  [0, 50000, 5];
+        this.statMgr.buildChart('divStatsContainer', filters, this.defaultFields);
     }
     applyFiltersToChart() {
         // Get filters
@@ -29,16 +29,21 @@ export class statisticsPage extends component
                 if (opt.selected) fields.push(opt.text);
             });
         }
-        if (fields.length==0) fields = ['Distance', 'Speed', 'Cadence', 'Heart', 'Duration'];
+        if (fields.length==0) fields = this.defaultFields;
 
         // Rebuild chart
         this.statMgr.destroyChart();
         this.statMgr.buildChart('divStatsContainer', filters, fields);
     }
+    changeSelectDistance() {
+        let value = event.currentTarget.value;
+        let arrayValues = value.split('-');
+        $('#txtMinDistance').val(arrayValues[0]);
+        $('#txtMaxDistance').val(arrayValues[1]);
+    }
     buildFields() {
-        let fields = ['Distance', 'Speed', 'Cadence', 'Heart', 'Duration'];
         let html = "";
-        fields.forEach((field) => {
+        this.defaultFields.forEach((field) => {
             html += "<option>" + field + "</option>";
         });
         $('#selFields').html(html);
@@ -47,9 +52,12 @@ export class statisticsPage extends component
         let res = $.Deferred();
         this.loadContent(containerId, htmlContent).done(() => {
             this.buildFields();
-            this.buildChart();
+            this.initChart();
             $('#btnFilter').click(() => {
                 this.applyFiltersToChart();
+            });
+            $('#selDistanceRange').change(() => {
+                this.changeSelectDistance();
             });
             res.resolve();
         }).fail(() => {

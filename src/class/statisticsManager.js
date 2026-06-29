@@ -10,8 +10,12 @@ export class statisticsManager {
     getLabels(activityIds) {
         let result = [];
         this.activities.forEach((act,i) => {
-            if (activityIds.indexOf(act.activityId)>-1) 
-                result.push(act.activityName);
+            if (activityIds.indexOf(act.activityId)>-1) {
+                let name = act.activityName.replace('Course à pied','')
+                let startDate = act.startTimeLocal.split(' ')[0];
+                result.push(name + "(" + startDate + ")");
+            }
+                
         });
         return result;
     }
@@ -24,6 +28,7 @@ export class statisticsManager {
                 if (type=='speed') result.push(statsTools.getSpeedKph(act.averageSpeed));
                 if (type=='cadence') result.push(act.averageRunningCadenceInStepsPerMinute);
                 if (type=='heart') result.push(act.averageHR);
+                if (type=='steps') result.push(act.avgStrideLength);
             }
         });
         return result;
@@ -34,7 +39,7 @@ export class statisticsManager {
             let data =  this.getData(field.toLowerCase(), activityIds);
             let axisName = 'y';
             let typeName = 'bar';
-            if (data[0]>=100) {
+            if (data[0]>=70) {
                 axisName = 'y1';
                 typeName = 'line';
             }
@@ -80,7 +85,7 @@ export class statisticsManager {
                     type: 'linear',
                     display: true,
                     position: 'right',
-                    min: 100
+                    min: 70
                 }
               }
             }

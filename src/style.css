@@ -105,3 +105,160 @@
 #divMenu .menuItem.active::after {
     transform: scaleX(1); /* Fait apparaître la ligne soulignée */
 }
+
+
+/* Zone principale : Tout tient sur une seule ligne fine */
+#divFilter {
+    display: flex;
+    align-items: center; /* Aligne verticalement tous les blocs au centre */
+    gap: 24px;
+    background-color: #ffffff;
+    padding: 10px 16px; /* Padding réduit pour économiser de la hauteur */
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 13px; /* Écrit légèrement plus petit pour le côté compact */
+    color: #333333;
+    max-width: fit-content;
+    margin-bottom: 15px; /* Espace minimal avant le Chart.js */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Groupes de filtres */
+.filter-group {
+    display: flex;
+    align-items: center; /* Aligne le label et l'input sur la même ligne */
+    gap: 12px;
+}
+
+/* Style spécifique pour le groupe des 3 inputs (en colonne interne) */
+.numeric-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px; /* Espace serré entre les lignes */
+}
+
+/* Ligne d'input : alignement parfait grâce au width fixe sur les labels */
+.input-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.input-row label {
+    font-weight: 500;
+    color: #4b5563;
+    margin-right: 12px;
+    width: 110px; 
+    text-align: left;
+}
+
+.filter-group label {
+    font-weight: 500;
+    color: #4b5563;
+    margin-right: 12px;
+    text-align: left;
+}
+
+/* Liste déroulante compacte */
+.filter-group select {
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    padding: 3px;
+    color: #333333;
+    outline: none;
+    min-width: 125px;
+    height: 90px;
+}
+#selFields:focus {
+    border-color: #1f2937;
+}
+
+/* Inputs numériques plus compacts */
+#divFilter input[type="number"] {
+    width: 75px; /* Légèrement plus étroit */
+    padding: 4px 8px;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    text-align: right;
+    font-family: inherit;
+}
+#divFilter input[type="number"]:focus {
+    border-color: #1f2937;
+    outline: none;
+}
+
+/* Zone du bouton centrée verticalement */
+.action-group {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+/* Bouton OK minimaliste et haut */
+#btnFilter {
+    background-color: #1f2937;
+    color: #ffffff;
+    border: none;
+    padding: 0 16px;
+    height: 30px;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+#btnFilter:hover {
+    background-color: #374151;
+}
+
+#btnFilter:active {
+    transform: scale(0.96);
+}
+
+/* Style du conteneur de l'accordéon */
+#filterAccordion {
+    max-width: fit-content;
+    margin-bottom: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Style de la barre cliquable */
+#filterAccordion summary {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #4b5563;
+    cursor: pointer;
+    padding: 6px 12px;
+    background-color: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    user-select: none;
+    list-style: none; /* Masque la flèche native sur Chrome/Firefox */
+}
+
+/* Masque la flèche native sur Safari */
+#filterAccordion summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Effet au survol de la barre de contrôle */
+#filterAccordion summary:hover {
+    background-color: #e2e8f0;
+    color: #1f2937;
+}
+
+/* Petit indicateur visuel (Chevron) */
+#filterAccordion summary .toggle-icon::before {
+    content: '▾';
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+/* Rotation du chevron quand le volet est FERMÉ */
+#filterAccordion:not([open]) summary .toggle-icon::before {
+    transform: rotate(-90deg);
+}
