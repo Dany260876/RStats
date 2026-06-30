@@ -17,13 +17,15 @@ export class mainMenu extends component
         });
         return res.promise();
     }
+    showPageContent(page) {
+        let divId = "div" + page[0].toUpperCase() + page.substr(1, page.length-1);
+        $('#' + divId).show();
+    }
     clicMenu() {
         $('.menuItem').removeClass('active');
-        $('#divStatistics').hide();
-        $('#divActivities').hide();
+        $('.pageContainer').hide();
         let val = $(event.currentTarget).data('name');
-        if (val=='statistics') $('#divStatistics').show();
-        if (val=='activities') $('#divActivities').show();
+        this.showPageContent(val);
         $(event.currentTarget).addClass('active');
     }
 }

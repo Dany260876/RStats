@@ -31,6 +31,7 @@ export class activitiesPage extends component
         html += "<td>Avg. Cadence (ppm)</td>";
         html += "<td>Avg. HR (bpm)</td>";
         html += "<td>Avg. steps (cm)</td>";
+        html += "<td>VO2Max (L/mn)</td>";
         html += "</tr>";
         this.activities.forEach((act) => {
             html += "<tr>";
@@ -43,6 +44,7 @@ export class activitiesPage extends component
             html += "<td class='tdNumericValue'>" + (act.averageRunningCadenceInStepsPerMinute).toFixed(2) + "</td>";
             html += "<td class='tdNumericValue'>" + (act.averageHR) + "</td>";
             html += "<td class='tdNumericValue'>" + (act.avgStrideLength).toFixed(2) + "</td>";
+            html += "<td class='tdNumericValue'>" + (act.vO2MaxValue!=undefined?act.vO2MaxValue:'-') + "</td>";
             html += "</tr>";
         });
         return html;

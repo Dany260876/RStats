@@ -1,5 +1,11 @@
+p, input, button {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    color: #333333;
+}
+
 /* Style général du tableau */
-#tblActivities {
+.dataTable {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
@@ -12,7 +18,7 @@
 }
 
 /* Style des cellules (générique) */
-#tblActivities td {
+.dataTable td {
     padding: 12px 15px;
     text-align: left; /* Alignement par défaut à gauche pour le texte et les dates */
     border-bottom: 1px solid #e0e0e0;
@@ -22,7 +28,7 @@
 }
 
 /* Style exclusif de la ligne d'en-tête */
-#tblActivities tr.header {
+.dataTable tr.header {
     background-color: #1f2937; /* Gris très foncé / Anthracite moderne */
     color: #ffffff;
     font-weight: 600;
@@ -32,22 +38,21 @@
 }
 
 /* Alignement à droite pour les valeurs numériques (en-têtes compris si alignés) */
-#tblActivities .tdNumericValue {
+.dataTable .tdNumericValue {
     text-align: right;
     font-variant-numeric: tabular-nums; /* Aligne parfaitement les chiffres verticalement */
 }
 
 /* Effet d'alternance de couleur pour les lignes (Zebra striping) */
-#tblActivities tr:nth-child(even):not(.header) {
+.dataTable tr:nth-child(even):not(.header) {
     background-color: #f8fafc;
 }
 
 /* Effet au survol des lignes pour améliorer la lecture */
-#tblActivities tr:not(.header):hover {
+.dataTable tr:not(.header):hover {
     background-color: #f1f5f9;
     transition: background-color 0.2s ease;
 }
-
 
 /* Container principal de la barre de navigation */
 #divMenu {
@@ -261,4 +266,24 @@
 /* Rotation du chevron quand le volet est FERMÉ */
 #filterAccordion:not([open]) summary .toggle-icon::before {
     transform: rotate(-90deg);
+}
+
+.trZone1 {
+    background-color: #dadaff !important; 
+}
+
+.trZone2 {
+    background-color: #dfffdf !important;
+}
+
+.trZone3 {
+    background-color: #fffbc7 !important;
+}
+
+.trZone4 {
+    background-color: #ffc37c !important;
+}
+
+.trZone5 {
+    background-color: #ff7c7c !important;
 }

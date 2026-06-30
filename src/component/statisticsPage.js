@@ -6,6 +6,7 @@ import htmlContent from './statisticsPage.html?raw';
 export class statisticsPage extends component
 {
     constructor(activities) {
+        console.log(activities);
         super();
         this.defaultFields = ['Cadence', 'Distance', 'Duration', 'Heart', 'Speed', 'Steps'];
         this.statMgr = new statisticsManager(activities);
@@ -44,7 +45,7 @@ export class statisticsPage extends component
     buildFields() {
         let html = "";
         this.defaultFields.forEach((field) => {
-            html += "<option>" + field + "</option>";
+            html += "<option selected>" + field + "</option>";
         });
         $('#selFields').html(html);
     }

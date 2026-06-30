@@ -5,7 +5,6 @@ import { statsTools } from './statsTools';
 export class statisticsManager {
     constructor(activities) {
         this.activities = activities;
-        console.log(this.activities);
     }
     getLabels(activityIds) {
         let result = [];

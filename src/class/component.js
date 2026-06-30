@@ -6,8 +6,7 @@ export class component
     loadContent(containerId, htmlContent) {
         let res = $.Deferred();
         try {
-            let html = $("#" + containerId).html();
-            $("#" + containerId).html(html + htmlContent);
+            $("#" + containerId).append(htmlContent);
             res.resolve();    
         }
         catch(err) {
