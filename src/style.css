@@ -317,7 +317,7 @@ p, input, button {
     box-sizing: border-box !important;
 }
 
-.tdShowDetails {
+.tdShowDetails, #previousActivity, #nextActivity, #btnCloseActivityDetails {
     cursor: pointer;
 }
 
@@ -360,4 +360,18 @@ p, input, button {
     border-left-width: 1px;
     border-left-color: lightgrey;
     width: 10%;
+}
+
+#divActivityDetailNav {
+    float: left;
+    margin-left: 10px;
+    font-size: 28px;
+    color: #2b2c51;
+}
+
+#divActivityDetailClose {
+    float: right;
+    margin-right: 10px;
+    font-size: 28px;
+    color: #2b2c51;
 }

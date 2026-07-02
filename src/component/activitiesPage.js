@@ -21,6 +21,12 @@ export class activitiesPage extends component
                 $('#tblActivities').show();
                 $('#divActivityDetails').hide();
             });
+            $('#previousActivity').click(() => {
+                this.showActivityDetails($(event.srcElement).data('id'));
+            });
+            $('#nextActivity').click(() => {
+                this.showActivityDetails($(event.srcElement).data('id'));
+            });
             res.resolve();
         }).fail(() => {
             res.reject();
@@ -28,9 +34,23 @@ export class activitiesPage extends component
         return res.promise();
     }
     showActivityDetails(activityId) {
-
         // get activity by id
-        let activity = this.activities.find((act) => act.activityId == activityId);
+        let index = this.activities.findIndex((act) => act.activityId == activityId);
+        let activity = this.activities[index];
+
+        // Get next & previous activity
+        $('#previousActivity').hide();
+        $('#nextActivity').hide();
+        if (index>0) {
+            let id = this.activities[index-1].activityId;
+            $('#previousActivity').data('id',id);
+            $('#previousActivity').show();
+        }
+        if (index<this.activities.length-1) {
+            let id = this.activities[index+1].activityId;
+            $('#nextActivity').data('id',id);
+            $('#nextActivity').show();
+        }
 
         // fill getOwnPropertyNames
         Object.getOwnPropertyNames(activity).forEach((prop)=>{
@@ -41,7 +61,7 @@ export class activitiesPage extends component
             }
             $('#' + prop).text(statsTools.formatField(value, format));
         });
-              
+        
         // show details
         $('#tblActivities').hide();
         $('#divActivityDetails').show();
