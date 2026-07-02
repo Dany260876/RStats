@@ -1,4 +1,62 @@
 <div id='divActivities' class='pageContainer'>
     <table id='tblActivities' class='dataTable'>
     </table>
+    <div id='divActivityDetails' class='hidden'>
+        <p>
+            <span id='activityName' class='title'></span> (<span id='activityType' class='title'></span>)
+            <br/><span id='startTimeLocal'></span>
+        </p>
+        <table>
+            <tr class='firstRow'>
+                <td class='title'>General</td>
+                <td><span class='subtitle'>Distance (kms)</span><br/><span id='distance' data-format='km'></span></td>
+                <td><span class='subtitle'>Duration<br/></span><span id='duration' data-format='minsec'></span></td>
+                <td><span class='subtitle'>Elevation (m)<br/></span>+<span id='elevationGain'></span> / -<span id='elevationLoss'></span></td>
+                <td><span class='subtitle'>Temperature (°C)<br/></span><span id='minTemperature'></span> / <span id='maxTemperature'></span></td>
+                <td><span class='subtitle'>VO2 Max<br/></span><span id='vO2MaxValue'></span></td>
+            </tr>
+            <tr>
+                <td class='title'>Running zones</td>
+                <td><span class='subtitle'>Zone 1<br/></span><span id='hrTimeInZone_1' data-format='minsec'></span></td>
+                <td><span class='subtitle'>Zone 2<br/></span><span id='hrTimeInZone_2' data-format='minsec'></span></td>
+                <td><span class='subtitle'>Zone 3<br/></span><span id='hrTimeInZone_3' data-format='minsec'></span></td>
+                <td><span class='subtitle'>Zone 4<br/></span><span id='hrTimeInZone_4' data-format='minsec'></span></td>
+                <td><span class='subtitle'>Zone 5<br/></span><span id='hrTimeInZone_5' data-format='minsec'></span></td>
+            </tr>
+            <tr>
+                <td class='title'>Training effect</td>
+                <td><span class='subtitle'>Aerobic<br/></span><span id='aerobicTrainingEffectMessage' data-format='training_fx'></span></td>
+                <td><span class='subtitle'>Anaerobic<br/></span><span id='anaerobicTrainingEffectMessage' data-format='training_fx'></span></td>
+                <td><span class='subtitle'>Calories<br/></span><span id='calories'></span></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class='title'>Speed</td>
+                <td><span class='subtitle'>Avg (km/h)<br/></span><span id='averageSpeed' data-format='kph'></span></td>
+                <td><span class='subtitle'>Max (km/h)<br/></span><span id='maxSpeed' data-format='kph'></span></td>
+                <td><span class='subtitle'>Vertical (km/h)<br/></span><span id='maxVerticalSpeed' data-format='kph'></span></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class='title'>Heart Rate</td>
+                <td><span class='subtitle'>Avg (bpm)<br/></span><span id='averageHR'></span></td>
+                <td><span class='subtitle'>Max (bpm)<br/></span><span id='maxHR'></span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class='title'>Steps</td>
+                <td><span class='subtitle'>Total<br/></span><span id='steps'></span></td>
+                <td><span class='subtitle'>Avg Length (cm)<br/></span><span id='avgStrideLength' data-format='rnd2'></span></td>
+                <td><span class='subtitle'>Avg (spm)<br/></span><span id='averageRunningCadenceInStepsPerMinute' data-format='rnd2'></span></td>
+                <td><span class='subtitle'>Max (spm)<br/></span><span id='maxRunningCadenceInStepsPerMinute' data-format='rnd2'></span></td>
+                <td></td>
+            </tr>
+        </table>
+        <br/>
+        <button id='btnCloseActivityDetails'>Close</button>
+    </div>
 </div>    

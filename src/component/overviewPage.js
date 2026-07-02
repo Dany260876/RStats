@@ -13,6 +13,9 @@ export class overviewPage extends component
         let res = $.Deferred();
         this.loadContent(containerId, htmlContent).done(() => {
             // TODO
+            this.statMgr.buildPie('divOverviewContainer', 'Test 1');
+            this.statMgr.buildPie('divOverviewContainer2', 'Test 2');
+            
             res.resolve();
         }).fail(() => {
             res.reject();

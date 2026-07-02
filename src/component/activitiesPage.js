@@ -6,6 +6,7 @@ import htmlContent from './activitiesPage.html?raw';
 export class activitiesPage extends component
 {
     constructor(activities) {
+        console.log(activities);
         super();
         this.activities = activities;
     }
@@ -13,15 +14,42 @@ export class activitiesPage extends component
         let res = $.Deferred();
         this.loadContent(containerId, htmlContent).done(() => {
             $("#tblActivities").html(this.getActivities());
+            $('.tdShowDetails').click(() => {
+                this.showActivityDetails($(event.srcElement).data('id'));
+            });
+            $('#btnCloseActivityDetails').click(() => {
+                $('#tblActivities').show();
+                $('#divActivityDetails').hide();
+            });
             res.resolve();
         }).fail(() => {
             res.reject();
         });
         return res.promise();
     }
+    showActivityDetails(activityId) {
+
+        // get activity by id
+        let activity = this.activities.find((act) => act.activityId == activityId);
+
+        // fill getOwnPropertyNames
+        Object.getOwnPropertyNames(activity).forEach((prop)=>{
+            let format = $('#' + prop).data('format');
+            let value = activity[prop];
+            if (typeof value == 'object') {
+                if (value.constructor.name=='activityType') value = value.typeKey;               
+            }
+            $('#' + prop).text(statsTools.formatField(value, format));
+        });
+              
+        // show details
+        $('#tblActivities').hide();
+        $('#divActivityDetails').show();
+    }
     getActivities() {
         let html = "";
         html += "<tr class='header'>";
+        html += "<td></td>";
         html += "<td>Activity Type</td>"
         html += "<td>Name</td>";
         html += "<td>Date & Time</td>"
@@ -35,10 +63,11 @@ export class activitiesPage extends component
         html += "</tr>";
         this.activities.forEach((act) => {
             html += "<tr>";
+            html += "<td class='tdShowDetails' data-id='" + act.activityId + "'>&#128196;</td>";
             html += "<td>" + act.activityType.typeKey + "</td>";
-            html += "<td>" + act.activityName.replace('Course à pied','') + "</td>";
+            html += "<td>" + act.activityName + "</td>";
             html += "<td>" + act.startTimeLocal + "</td>";
-            html += "<td class='tdNumericValue'>" + (act.distance/1000).toFixed(2) + "</td>";
+            html += "<td class='tdNumericValue'>" + statsTools.getDistanceKm(act.distance).toFixed(2) + "</td>";
             html += "<td class='tdNumericValue'>" + statsTools.getFormattedDuration(act.duration) + "</td>";
             html += "<td class='tdNumericValue'>" + statsTools.getSpeedKph(act.averageSpeed).toFixed(2) + "</td>";
             html += "<td class='tdNumericValue'>" + (act.averageRunningCadenceInStepsPerMinute).toFixed(2) + "</td>";

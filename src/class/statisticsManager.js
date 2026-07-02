@@ -28,6 +28,7 @@ export class statisticsManager {
                 if (type=='cadence') result.push(act.averageRunningCadenceInStepsPerMinute);
                 if (type=='heart') result.push(act.averageHR);
                 if (type=='steps') result.push(act.avgStrideLength);
+                if (type=='vo2') result.push(act.vO2MaxValue);
             }
         });
         return result;
@@ -89,6 +90,36 @@ export class statisticsManager {
               }
             }
           });
+    }
+    buildPie(containerName, title) {
+        const ctx = document.getElementById(containerName);
+        const data = {
+          labels: ['Red', 'Orange', 'Yellow', 'Green', 'Blue'],
+          datasets: [
+            {
+              label: 'Dataset 1',
+              data: [5,5,10,30,50],
+              //backgroundColor: [],
+            }
+          ]
+        };
+        const config = {
+          type: 'pie',
+          data: data,
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: 'bottom',
+              },
+              title: {
+                display: true,
+                text: title
+              }
+            }
+          },
+        };
+        this.chart = new Chart(ctx, config);
     }
     destroyChart() {
         this.chart.destroy();

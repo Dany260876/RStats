@@ -1,17 +1,17 @@
 <div id='divConfiguration' class='pageContainer'>
-    <div>
-            <p>
-                Age : <input id='txtAge' type='number' value=30></input>
-                Sex : <select id='selSex'>
-                            <option value='M' selected>M</option>
-                            <option value='F'>F</option>
-                        </select>
-            </p>
-            <p>
-                HR Max : <input id='txtFCMax' type='number' value=200></input>
-            </p>
+    <div id="divConfigValues">
+        <div class="config-group">
+            <label for="txtAge">Age</label>
+            <input id='txtAge' type='number' value=30></input>
+            <label for="selSex">Sex</label>
+            <select id='selSex'>
+                <option value='M' selected>Male</option>
+                <option value='F'>Female</option>
+            </select>
+            <label for="txtFCMax">HR Max</label>
+            <input id='txtFCMax' type='number' value=200></input>
             <button id='btnValidateConfig'>OK</button>
-        </tr>
+        </div>
     </div>
     <table id='tblHrZones' class='dataTable'>
         <tr class='header'>

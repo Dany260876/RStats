@@ -1,7 +1,30 @@
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+}
+
 p, input, button {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 14px;
     color: #333333;
+}
+
+.title {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+
+.subtitle {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
 }
 
 /* Style général du tableau */
@@ -286,4 +309,55 @@ p, input, button {
 
 .trZone5 {
     background-color: #ff7c7c !important;
+}
+
+.chartPieOverview {
+    width: 400px !important;
+    height: 400px !important;
+    box-sizing: border-box !important;
+}
+
+.tdShowDetails {
+    cursor: pointer;
+}
+
+#divActivityDetails {
+    text-align: center;
+}
+
+#divActivityDetails table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    color: #333333;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden; /* Pour que les bords arrondis s'appliquent aussi à l'en-tête */
+    border-style:solid;
+    border-width:1px;
+}
+
+#divActivityDetails table .firstRow {
+    border-top-style: solid;
+    border-top-width: 2px;
+    border-top-color: #e0e0e0;
+}
+
+#divActivityDetails table .title {
+    background-color: #1f2937; /* Gris très foncé / Anthracite moderne */
+    color: #ffffff;
+}
+
+#divActivityDetails table td {
+    vertical-align: middle;
+    padding: 12px 15px;
+    text-align: left; /* Alignement par défaut à gauche pour le texte et les dates */
+    border-bottom: 1px solid #e0e0e0;
+    border-top: 1px solid #lightgray;
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-left-color: lightgrey;
+    width: 10%;
 }

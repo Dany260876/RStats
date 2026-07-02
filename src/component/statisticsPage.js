@@ -6,14 +6,20 @@ import htmlContent from './statisticsPage.html?raw';
 export class statisticsPage extends component
 {
     constructor(activities) {
-        console.log(activities);
         super();
-        this.defaultFields = ['Cadence', 'Distance', 'Duration', 'Heart', 'Speed', 'Steps'];
+        this.defaultFields = ['Cadence', 'Distance', 'Duration', 'Heart', 'Speed', 'Steps', 'Vo2'];
         this.statMgr = new statisticsManager(activities);
     }
     initChart() {
         let filters =  [0, 50000, 5];
         this.statMgr.buildChart('divStatsContainer', filters, this.defaultFields);
+    }
+    initFilters() {
+        let html = "";
+        this.defaultFields.forEach((field) => {
+            html += "<option selected>" + field + "</option>";
+        });
+        $('#selFields').html(html);
     }
     applyFiltersToChart() {
         // Get filters
@@ -42,17 +48,10 @@ export class statisticsPage extends component
         $('#txtMinDistance').val(arrayValues[0]);
         $('#txtMaxDistance').val(arrayValues[1]);
     }
-    buildFields() {
-        let html = "";
-        this.defaultFields.forEach((field) => {
-            html += "<option selected>" + field + "</option>";
-        });
-        $('#selFields').html(html);
-    }
     build(containerId) {
         let res = $.Deferred();
         this.loadContent(containerId, htmlContent).done(() => {
-            this.buildFields();
+            this.initFilters();
             this.initChart();
             $('#btnFilter').click(() => {
                 this.applyFiltersToChart();
