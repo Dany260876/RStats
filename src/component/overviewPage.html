@@ -1,8 +1,42 @@
 <div id='divOverview' class='pageContainer'>
-     <table>
-          <tr>
-               <td><canvas id='divOverviewContainer' class='chartPieOverview'></canvas></td>
-               <td><canvas id='divOverviewContainer2' class='chartPieOverview'></canvas></td>
-          </tr>
-     </table>
+     <details class="filterAccordion" closed>
+     <summary>Overview Filters<span class="toggle-icon"></span></summary>
+          <div id="divFilterOverview">
+             <div class="filter-group numeric-group">
+                    <div class="input-row">
+                         <label for="txtMinDistanceOverview">Min Distance (m)</label>
+                         <input type="number" id="txtMinDistanceOverview" value="0" step="1000">
+                    </div>
+                    <div class="input-row">
+                         <label for="txtMaxDistanceOverview">Max Distance (m)</label>
+                         <input type="number" id="txtMaxDistanceOverview" value="15000" step="1000">
+                    </div>
+                    <div class="input-row">
+                         <label for="txtMaxActivitiesOverview">Nb. Activities</label>
+                         <input type="number" id="txtMaxActivitiesOverview" value="10">
+                    </div>
+               </div>
+             <div class="action-group">
+                <button id="btnFilterOverview">OK</button>
+            </div>
+          </div>
+     </details>
+     <details class="filterAccordion" open>
+     <summary>Average stats<span class="toggle-icon"></span></summary>
+          <table>
+               <tr>
+                    <td><canvas id='divOverviewContainer' class='chartPieOverview'></canvas></td>
+                    <td><canvas id='divOverviewContainer2' class='chartPieOverview'></canvas></td>
+                    <td><canvas id='divOverviewContainer3' class='chartPieOverview'></canvas></td>
+               </tr>
+          </table>
+     </details>
+     <details class="filterAccordion" open>
+     <summary>Overview stats<span class="toggle-icon"></span></summary>
+          <table>
+               <tr>
+                    <td><canvas id='divOverviewContainer4' class='chartRadarOverview'></canvas></td>
+               </tr>
+          </table>
+     </details>
 </div>

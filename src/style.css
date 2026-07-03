@@ -136,7 +136,7 @@ p, input, button {
 
 
 /* Zone principale : Tout tient sur une seule ligne fine */
-#divFilter {
+#divFilterStats, #divFilterOverview {
     display: flex;
     align-items: center; /* Aligne verticalement tous les blocs au centre */
     gap: 24px;
@@ -224,7 +224,7 @@ p, input, button {
 }
 
 /* Bouton OK minimaliste et haut */
-#btnFilter {
+#btnFilter, #btnFilterOverview {
     background-color: #1f2937;
     color: #ffffff;
     border: none;
@@ -236,23 +236,23 @@ p, input, button {
     transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
-#btnFilter:hover {
+#btnFilter:hover, #btnFilterOverview:hover {
     background-color: #374151;
 }
 
-#btnFilter:active {
+#btnFilter:active, #btnFilterOverview:active {
     transform: scale(0.96);
 }
 
 /* Style du conteneur de l'accordéon */
-#filterAccordion {
+.filterAccordion {
     max-width: fit-content;
     margin-bottom: 15px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Style de la barre cliquable */
-#filterAccordion summary {
+.filterAccordion summary {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -269,25 +269,25 @@ p, input, button {
 }
 
 /* Masque la flèche native sur Safari */
-#filterAccordion summary::-webkit-details-marker {
+.filterAccordion summary::-webkit-details-marker {
     display: none;
 }
 
 /* Effet au survol de la barre de contrôle */
-#filterAccordion summary:hover {
+.filterAccordion summary:hover {
     background-color: #e2e8f0;
     color: #1f2937;
 }
 
 /* Petit indicateur visuel (Chevron) */
-#filterAccordion summary .toggle-icon::before {
+.filterAccordion summary .toggle-icon::before {
     content: '▾';
     display: inline-block;
     transition: transform 0.2s ease;
 }
 
 /* Rotation du chevron quand le volet est FERMÉ */
-#filterAccordion:not([open]) summary .toggle-icon::before {
+.filterAccordion:not([open]) summary .toggle-icon::before {
     transform: rotate(-90deg);
 }
 
@@ -312,8 +312,14 @@ p, input, button {
 }
 
 .chartPieOverview {
-    width: 400px !important;
-    height: 400px !important;
+    width: 300px !important;
+    height: 300px !important;
+    box-sizing: border-box !important;
+}
+
+.chartRadarOverview {
+    width: 600px !important;
+    height: 600px !important;
     box-sizing: border-box !important;
 }
 
@@ -374,4 +380,8 @@ p, input, button {
     margin-right: 10px;
     font-size: 28px;
     color: #2b2c51;
+}
+
+#divOverview table {
+    width: 100%;
 }

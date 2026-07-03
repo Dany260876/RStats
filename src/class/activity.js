@@ -1,11 +1,9 @@
-import { activityType } from './activityType';
-
 export class activity
 {
     constructor(objActivity) {
         this.activityId = objActivity.activityId;
         this.activityName = objActivity.activityName.replace('Course à pied','');
-        this.activityType = new activityType(objActivity.activityType);
+        this.activityType = objActivity.activityType.typeKey;
         this.activityUUID = objActivity.activityUUID;
         this.aerobicTrainingEffect = objActivity.aerobicTrainingEffect;
         this.aerobicTrainingEffectMessage = objActivity.aerobicTrainingEffectMessage;

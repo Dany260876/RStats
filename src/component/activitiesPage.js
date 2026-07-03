@@ -56,9 +56,6 @@ export class activitiesPage extends component
         Object.getOwnPropertyNames(activity).forEach((prop)=>{
             let format = $('#' + prop).data('format');
             let value = activity[prop];
-            if (typeof value == 'object') {
-                if (value.constructor.name=='activityType') value = value.typeKey;               
-            }
             $('#' + prop).text(statsTools.formatField(value, format));
         });
         
@@ -84,7 +81,7 @@ export class activitiesPage extends component
         this.activities.forEach((act) => {
             html += "<tr>";
             html += "<td class='tdShowDetails' data-id='" + act.activityId + "'>&#128196;</td>";
-            html += "<td>" + act.activityType.typeKey + "</td>";
+            html += "<td>" + act.activityType + "</td>";
             html += "<td>" + act.activityName + "</td>";
             html += "<td>" + act.startTimeLocal + "</td>";
             html += "<td class='tdNumericValue'>" + statsTools.getDistanceKm(act.distance).toFixed(2) + "</td>";
