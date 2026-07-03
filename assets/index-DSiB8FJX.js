@@ -6,7 +6,7 @@ var e=(e,t)=>()=>(t||(e((t={exports:{}}).exports,t),e=null),t.exports),t=(e=>typ
     </table>
     <div id='divActivityDetails' class='hidden'>
         <div id='divActivityDetailNav'><span id='previousActivity'>&#9665;</span><span id='nextActivity'>&#9655;</span></div>
-        <div id='divActivityDetailClose'><span id='btnCloseActivityDetails'>&#128937;</span></div>
+        <div id='divActivityDetailClose'><span id='btnCloseActivityDetails'>&#11199;</span></div>
         <p>
             <span id='activityName' class='title'></span> (<span id='activityType' class='title'></span>)
             <br/><span id='startTimeLocal'></span>
