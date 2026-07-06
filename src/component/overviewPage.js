@@ -34,6 +34,6 @@ export class overviewPage extends component
         this.statMgr.buildPie('divOverviewContainer', '% Running distances', 'distance', filters);
         this.statMgr.buildPie('divOverviewContainer2', '% Average speed', 'speed', filters);
         this.statMgr.buildPie('divOverviewContainer3', '% Time in running zones', 'zones', filters);
-        this.statMgr.buildRadar('divOverviewContainer4', 'Radar statistics', filters);
+        this.statMgr.buildOverviewStats('divOverviewContainer4', 'Global statistics', filters);
     }
 }

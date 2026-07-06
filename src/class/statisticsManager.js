@@ -208,17 +208,19 @@ export class statisticsManager {
         let pie = new Chart(ctx, config);
         this.charts.push(pie);
     }
-    getRadarStats(activityIds) {
+    getOverviewStats(activityIds) {
         let result = {};
-        result.labels = ['Average Speed (km/h)', 'Average duration (min)', 'Average Vo2Max', 'Average distance (km)'];
-        result.data = [0,0,0,0];
+        result.labels = ['Avg. Speed (km/h)', 'Avg. duration (min)', 'Avg. distance (km)', 'Avg. Heart Rate', 'Vo2Max'];
+        result.data = [0,0,0,0,0];
 
         this.activities.forEach((act,i) => {
             if (activityIds.indexOf(act.activityId)>-1) {
+                let vo2 = Number.isInteger(act.vO2MaxValue)?act.vO2MaxValue:0;
                 result.data[0] += statsTools.getSpeedKph(act.averageSpeed);
                 result.data[1] += act.duration;
-                result.data[2] += Number.isInteger(act.vO2MaxValue)?act.vO2MaxValue:0;
-                result.data[3] += act.distance/1000;
+                result.data[2] += act.distance/1000;
+                result.data[3] += act.averageHR;
+                if (result.data[4]<=vo2) result.data[4] = vo2;
             }
         });
 
@@ -226,32 +228,34 @@ export class statisticsManager {
         result.data[1] = result.data[1] / activityIds.length;
         result.data[2] = result.data[2] / activityIds.length;
         result.data[3] = result.data[3] / activityIds.length;
-
         result.data[1] = statsTools.getDurationMinutes(result.data[1]);
 
         return result;
     }
-    buildRadar(containerName, title, filters) {
+    buildOverviewStats(containerName, title, filters) {
         let ids = this.getActivitiesId(filters);
-        let radarData = this.getRadarStats(ids);
+        let radarData = this.getOverviewStats(ids);
         const ctx = document.getElementById(containerName);
         
         const data = {
           labels: radarData.labels,
           datasets: [
             {
-              label: 'Running Metrics',
-              data: radarData.data,
-              borderColor: 'grey',
-              backgroundColor: 'lightgrey',
+              data: radarData.data
             }
           ]
         };
         const config = {
-            type: 'radar',
+            type: 'bar',
             data: data,
             options: {
-                responsive: true
+                indexAxis: 'y',
+                responsive: true,
+                plugins: {
+                    legend: {
+                          display: false
+                    }
+                }
             }
         };
         let radar = new Chart(ctx, config);

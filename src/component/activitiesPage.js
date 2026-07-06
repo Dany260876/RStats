@@ -71,7 +71,7 @@ export class activitiesPage extends component
         html += "<td>Name</td>";
         html += "<td>Date & Time</td>"
         html += "<td>Distance (km)</td>";
-        html += "<td>Duration (m)</td>";
+        html += "<td>Duration (min)</td>";
         html += "<td>Avg. Speed (km/h)</td>";
         html += "<td>Avg. Cadence (ppm)</td>";
         html += "<td>Avg. HR (bpm)</td>";

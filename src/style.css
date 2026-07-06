@@ -317,9 +317,8 @@ p, input, button {
     box-sizing: border-box !important;
 }
 
-.chartRadarOverview {
-    width: 600px !important;
-    height: 600px !important;
+.chartStatsOverview {
+    width: 500 !important;
     box-sizing: border-box !important;
 }
 
